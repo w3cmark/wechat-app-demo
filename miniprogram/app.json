@@ -1,0 +1,14 @@
+{
+  "cloud": true,
+  "pages": [
+    "pages/index/index",
+    "pages/share/share"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "小程序demo",
+    "navigationBarTextStyle": "black"
+  }
+}

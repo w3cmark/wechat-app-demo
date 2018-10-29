@@ -1,0 +1,84 @@
+/* component/share/share.wxss */
+.share-poup-mask {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 750px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+.share-image-poup {
+    z-index: 3;
+    position: fixed;
+    width: 524px;
+    left: 113px;
+    top: 104px;
+}
+.share-image-poup img {
+    width: 100%;
+}
+.share-image-poup .close {
+    background-image: url('../../images/share-popup-close.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: -16px;
+    top: -16px;
+    z-index: 1;
+}
+.share-image-poup .btn {
+    position: fixed;
+    width: 620px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    left: 65px;
+    bottom: 110px;
+    background-color: #ea4844;
+    color: #fff;
+    font-size: 32px;
+    border-radius: 50px;
+}
+.share-main-poup {
+    position: fixed;
+    background-color: #fff;
+    z-index: 3;
+    width: 750px;
+    height: 300px;
+    left: 0;
+    bottom: 0;
+}
+.share-main-poup .icon-content {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+.share-main-poup .share {
+    background: none;
+    border: none;
+    width: 200px;
+    height: 198px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+.share-main-poup .share-icon1 {
+    background-image: url('../../images/icon-share-appMessage.jpg');
+}
+.share-main-poup .share-icon2 {
+    background-image: url('../../images/icon-share-timeline.jpg');
+}
+
+.share-main-poup .btn-close {
+    position: absolute;
+    color: #333;
+    font-size: 32px;
+    width: 750px;
+    height: 100px;
+    line-height: 100px;
+    left: 0;
+    bottom: 0;
+    border-top: 1px solid #ddd;
+}

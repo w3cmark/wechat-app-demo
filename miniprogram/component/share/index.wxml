@@ -1,0 +1,41 @@
+<!--component/share/share.wxml-->
+<!-- 分享按钮 -->
+<button 
+    open-type="getUserInfo" 
+    bindgetuserinfo="onGetUserInfo"
+    class="userinfo-avatar"
+    >
+    点击分享
+</button>
+
+<!-- 分享到好友还是朋友圈选择弹层 -->
+<view wx:if="{{showSharePickPop}}">
+    <view class="share-poup-mask" bindtap="closePopup">
+    </view>
+    <view class="share-main-poup">
+        <view class="icon-content">
+            <button
+                class="share share-icon1"
+                form-type="submit"
+                open-type="share"
+                v-show="showShareAppMessage"
+                bindtap="onShareAppMessage"></button>
+            <button
+                class="share share-icon2"
+                v-show="showShareTimeline"
+                bindtap="onShareTimeline"></button>
+        </view>
+        <view class="btn-close" bindtap="closePopup">取消</view>
+    </view>
+</view>
+
+<!-- 分享到朋友圈绘制图弹层 -->
+<view wx:elif="{{showTempImagePop}}">
+    <view class="share-poup-mask" bindtap="hideImagePopup">
+    </view>
+    <view class="share-image-poup">
+        <view class="close" bindtap="hideImagePopup"></view>
+        <image src="{{tempImage}}" mode="widthFix"></image>
+        <button bindtap="writePhotosAlbum" class="btn">保存图片 分享朋友圈</button>
+    </view>
+</view>

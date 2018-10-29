@@ -1,0 +1,6 @@
+<view class="container">
+    <view class="item">
+        <!-- 自定义的分享组件 -->
+        <Share />
+    </view>
+</view>

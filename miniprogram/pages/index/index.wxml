@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 分享相关 -->
+  <navigator url="../share/share" open-type="navigate" class="item">
+    <text>分享相关</text>
+  </navigator>
+
+</view>
