@@ -1,84 +1,130 @@
 /* component/share/share.wxss */
+
 .share-poup-mask {
     position: fixed;
     z-index: 2;
     top: 0;
     left: 0;
-    width: 750px;
+    width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
 }
-.share-image-poup {
-    z-index: 3;
-    position: fixed;
-    width: 524px;
-    left: 113px;
-    top: 104px;
-}
-.share-image-poup img {
-    width: 100%;
-}
-.share-image-poup .close {
-    background-image: url('../../images/share-popup-close.png');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    right: -16px;
-    top: -16px;
-    z-index: 1;
-}
-.share-image-poup .btn {
-    position: fixed;
-    width: 620px;
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
-    left: 65px;
-    bottom: 110px;
-    background-color: #ea4844;
-    color: #fff;
-    font-size: 32px;
-    border-radius: 50px;
-}
+
+/* 分享面板 */
 .share-main-poup {
     position: fixed;
     background-color: #fff;
     z-index: 3;
-    width: 750px;
-    height: 300px;
+    width: 100%;
+    height: 300rpx;
     left: 0;
     bottom: 0;
+    transform: translateY(100%);
 }
-.share-main-poup .icon-content {
-    height: 200px;
+.poup-th{
+    background-color: #f8f8f8;
+    padding-left: 20rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    position: relative;
+    z-index: 1;
+}
+.poup-th .btn-close {
+    position: absolute;
+    z-index: 2;
+    font-size: 32rpx;
+    width: 50rpx;
+    height: 50rpx;
+    line-height: 100rpx;
+    right: 20rpx;
+    top: 15rpx;
+}
+.poup-th .btn-close::after{
+    position: absolute;
+    content: '';
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    width: 80%;
+    height: 1px;
+    background-color: #ccc;
+}
+.poup-th .btn-close::before{
+    position: absolute;
+    content: '';
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 80%;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.share-main-poup .poup-tb {
+    height: 200rpx;
     display: flex;
     justify-content: center;
 }
 .share-main-poup .share {
-    background: none;
-    border: none;
-    width: 200px;
-    height: 198px;
+    background-color: transparent;
+    width: 200rpx;
+    height: 198rpx;
     background-size: 100% auto;
     background-repeat: no-repeat;
 }
+.share::after {
+    border:0;
+}
 .share-main-poup .share-icon1 {
-    background-image: url('../../images/icon-share-appMessage.jpg');
+    position: relative;
+    z-index: 1;
+    background-image: url('https://raw.githubusercontent.com/w3cmark/wechat-app-demo/master/miniprogram/images/icon-share-appMessage.jpg');
+}
+.poup-tb .line{
+    height: 100rpx;
+    width: 1px;
+    background-color: #ddd;
+    margin-top: 60rpx;
 }
 .share-main-poup .share-icon2 {
-    background-image: url('../../images/icon-share-timeline.jpg');
+    background-image: url('https://raw.githubusercontent.com/w3cmark/wechat-app-demo/master/miniprogram/images/icon-share-timeline.jpg');
 }
 
-.share-main-poup .btn-close {
-    position: absolute;
-    color: #333;
-    font-size: 32px;
-    width: 750px;
-    height: 100px;
-    line-height: 100px;
+/* 分享到朋友圈弹层 */
+.share-circle-poup {
+    z-index: 3;
+    position: fixed;
+    background-color: #fff;
+    z-index: 5;
+    width: 100%;
+    height: 85%;
     left: 0;
     bottom: 0;
-    border-top: 1px solid #ddd;
+    transform: translateY(100%);
+}
+.share-circle-poup image {
+    height: 750rpx;
+    width: 500rpx;
+    margin: 0 auto;
+    display: block;
+}
+
+.share-circle-poup .btn {
+    margin: 0 auto;
+    width: 90%;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    background-color: #ea4844;
+    color: #fff;
+    font-size: 28rpx;
+    border-radius: 10rpx;
+}
+.circle-tips{
+    text-align: center;
+    font-size: 24rpx;
+    line-height: 70rpx;
+    color: #777777;
 }

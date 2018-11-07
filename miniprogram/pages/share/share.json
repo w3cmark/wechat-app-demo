@@ -1,4 +1,5 @@
 {
+    "navigationBarTitleText": "分享相关",
     "usingComponents": {
         "Share":"/component/share/index"
     }

@@ -1,4 +1,13 @@
 /* miniprogram/pages/share/share.wxss */
+.tit{
+    line-height: 80rpx;
+    text-align: left;
+    padding-left: 30rpx;
+    width: 100%;
+    font-size: 28rpx;
+    background-color: #f2f2f2;
+    margin-bottom: 30rpx;
+}
 .item {
-    margin-top: 40rpx;
+    margin: 40rpx;
 }
