@@ -1,0 +1,13 @@
+.vscode
+typings
+jsconfig.json
+package-lock.json
+project.config.json
+.DS_Store
+.tags
+*.map
+.idea
+node_modules
+test/coverage
+builds
+ci.sh

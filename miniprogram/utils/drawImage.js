@@ -28,7 +28,7 @@ const drawUtil = require('./drawUtil');
    }
  */
 module.exports = function (data, successCallback, failCallback) {
-    if(!data){
+    if (!data) {
         failCallback && failCallback();
     }
 
@@ -43,7 +43,7 @@ module.exports = function (data, successCallback, failCallback) {
     let downLoadImgCount = 0; // 当前下载图片数量
 
     data.content.forEach(element => {
-        if(element && element.type === 'image') {
+        if (element && element.type === 'image') {
             imgTotalCount++;
         }
     });
@@ -70,16 +70,16 @@ module.exports = function (data, successCallback, failCallback) {
                     wx.getImageInfo({
                         src: res.tempFilePath,
                         success: (re) => {
-                            let new_w = re.width * (335/re.width);
-                            let new_h = re.height * (335/re.width);
+                            let new_w = re.width * (335 / re.width);
+                            let new_h = re.height * (335 / re.width);
                             drawViewToCanvas(res.tempFilePath, x, y, new_w, new_h, isCircle);
                         },
                         fail: () => {
                             failCallback && failCallback(); // 如果图片信息获取失败，直接返回失败
                         }
-                    })
+                    });
                 }
-                
+
             },
             () => {
                 failCallback && failCallback(); // 如果下载图片失败，直接返回加载失败
@@ -91,7 +91,7 @@ module.exports = function (data, successCallback, failCallback) {
      * 绘制图片到canvas
      */
     let drawViewToCanvas = function(imgUrl, x, y, width, height, isCircle) {
-        drawUtil.drawImg(context, imgUrl, x , y , width, height, isCircle);
+        drawUtil.drawImg(context, imgUrl, x, y, width, height, isCircle);
         downLoadImgCount++;
         if (downLoadImgCount !== imgTotalCount) {
             return;
@@ -100,7 +100,7 @@ module.exports = function (data, successCallback, failCallback) {
         drawUtil.drawViewToCanvas(context, () => {
             saveImage();
         });
-    }
+    };
 
     /**
      * 绘制文案
@@ -154,10 +154,10 @@ module.exports = function (data, successCallback, failCallback) {
     // drawText('长按识别查看商品', 12, '#888888', 263, 623);
 
     data.content.forEach(element => {
-        if(element && element.type === 'image') {
+        if (element && element.type === 'image') {
             // 图片
             downImage(element.src, element.x, element.y, element.width, element.height);
-        } else if(element && element.type === 'text') {
+        } else if (element && element.type === 'text') {
             // 文案
             drawText(element.content, '', '#888888', element.x, element.y);
         }

@@ -38,7 +38,7 @@ function downloadFile(url = '', retry, success, fail) {
         fail: function(err) {
             console.log(err);
             if (retry) {
-                downloadFile(url, backupUrl, false, success, fail);
+                downloadFile(url, false, success, fail);
             } else {
                 fail && fail(err);
             }

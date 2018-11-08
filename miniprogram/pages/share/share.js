@@ -1,5 +1,3 @@
-// miniprogram/pages/share/share.js
-const app = getApp()
 Page({
 
     /**
@@ -25,11 +23,11 @@ Page({
         wx.setStorage({
             key: 'userInfo',
             data: e.detail.userInfo
-        })
+        });
         this.data.userInfo = e.detail.userInfo;
         this.setData({
             userInfo: this.data.userInfo
-        })
+        });
     },
     getUserInfo: function () {
         // 获取用户信息
@@ -37,7 +35,7 @@ Page({
             this.data.userInfo = wx.getStorageSync('userInfo');
             this.setData({
                 userInfo: this.data.userInfo
-            })
+            });
         } catch (e) {
             console.log(e);
         }
@@ -50,7 +48,7 @@ Page({
             style: '',
             x: 20,
             y: 0,
-        }
+        };
         // 第一个分享按钮
         let shareFriendInfoA = {
             width: 375,
@@ -137,13 +135,13 @@ Page({
             shareInfoA,
             shareInfoB,
             shareFriendInfoA
-        })
+        });
     },
     onShareAppMessage: function (res) {
         return {
             title: '啦啦啦，大家好，我是刘亦菲～',
             path: 'pages/share/share',
             imageUrl: this.data.shareImgUrl || this.data.img2
-        }
+        };
     }
-})
+});

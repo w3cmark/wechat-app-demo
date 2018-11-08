@@ -46,17 +46,17 @@ Component({
             this.mainPoupAnimation = wx.createAnimation({
                 duration: 400,
                 timingFunction: 'ease-out',
-            })
+            });
             // 半透明遮罩层动画
             this.maskPoupAnimation = wx.createAnimation({
                 duration: 400,
                 timingFunction: 'ease-out',
-            })
+            });
             // 分享朋友圈动画
             this.circlePoupAnimation = wx.createAnimation({
                 duration: 400,
                 timingFunction: 'ease-out',
-            })
+            });
         },
         /**
          * toast 提示
@@ -64,12 +64,12 @@ Component({
          * @param icon 提示icon
          * @param duration 持续时间
          */
-        showToast(title, icon='none', duration=2000) {
+        showToast(title, icon = 'none', duration = 2000) {
             wx.showToast({
                 title,
                 icon,
                 duration
-            })
+            });
         },
         /**
          * 监听 点击分享按钮
@@ -80,13 +80,13 @@ Component({
 
             this.setData({
                 showSharePickPop: true,
-            })
+            });
             setTimeout(() => {
                 this.setData({
                     'animationData.mainPoup': this.mainPoupAnimation.export(),
                     'animationData.maskPoup': this.maskPoupAnimation.export(),
-                })
-            }, 20)
+                });
+            }, 20);
         },
         /**
          * 监听 点击关闭分享弹层按钮
@@ -102,12 +102,12 @@ Component({
             this.setData({
                 'animationData.mainPoup': this.mainPoupAnimation.export(),
                 'animationData.maskPoup': this.maskPoupAnimation.export(),
-            })
+            });
             setTimeout(() => {
                 this.setData({
                     showSharePickPop: false,
-                })
-            }, 400)
+                });
+            }, 400);
         },
         /**
          * 监听 点击分享到好友按钮
@@ -115,7 +115,7 @@ Component({
         onShareAppMessage(shareInfo, callback) {
             // 开始生成图片
             if (!this.data.friendImage) {
-                this.drawFriendImg(shareInfo, (imgUrl)=> {
+                this.drawFriendImg(shareInfo, (imgUrl) => {
                     callback && callback(imgUrl);
                 });
             }
@@ -124,7 +124,7 @@ Component({
          * 绘制好友分享图
          */
         drawFriendImg(shareInfo, callback) {
-            
+
             // 分享信息有误
             if (!shareInfo) {
                 console.error('shareInfo is null');
@@ -161,13 +161,13 @@ Component({
             this.circlePoupAnimation.translateY(0).step();
             this.setData({
                 showCirclePoup: true,
-            })
+            });
 
             setTimeout(() => {
                 this.setData({
                     'animationData.circlePoup': this.circlePoupAnimation.export(),
-                })
-            }, 20)
+                });
+            }, 20);
 
             // 开始生成图片
             if (!this.data.circleImage) {
@@ -182,12 +182,12 @@ Component({
 
             this.setData({
                 'animationData.circlePoup': this.circlePoupAnimation.export(),
-            })
+            });
             setTimeout(() => {
                 this.setData({
                     showCirclePoup: false,
-                })
-            }, 400)
+                });
+            }, 400);
         },
         /**
          * 监听 点击保存到相册按钮
@@ -219,7 +219,7 @@ Component({
                 // Do something when catch error
                 console.log(e);
             }
-            
+
             if (!authorizeWritePhotosAlbum) {
                 // 询问授权
                 wx.authorize({
@@ -228,11 +228,11 @@ Component({
                         // console.log('授权认证成功' + JSON.stringify(res));
                         this.saveImage();
                     },
-                    fail: (err) => {
+                    fail: () => {
                         wx.setStorage({
                             key: 'authorizeWritePhotosAlbum',
                             data: 'fail'
-                        })
+                        });
                     }
                 });
             } else if (authorizeWritePhotosAlbum === 'success') {
@@ -244,10 +244,10 @@ Component({
                     this.saveImage();
                 }, () => {
                     // 失败
-                    this.showToast(this.data.saveImgFailText)
+                    this.showToast(this.data.saveImgFailText);
                 });
             }
-            
+
         },
         /**
          * 保存到相册按钮
@@ -256,14 +256,14 @@ Component({
             wx.setStorage({
                 key: 'authorizeWritePhotosAlbum',
                 data: 'success'
-            })
+            });
             wx.saveImageToPhotosAlbum({
                 filePath: this.data.circleImage,
                 success: () => {
-                    this.showToast(this.data.saveImgSuccessText, 'success')
+                    this.showToast(this.data.saveImgSuccessText, 'success');
                 },
                 fail: () => {
-                    this.showToast(this.data.saveImgFailText, 'success')
+                    this.showToast(this.data.saveImgFailText, 'success');
                 }
             });
         },
@@ -272,7 +272,7 @@ Component({
          */
         drawCircleImg() {
             let shareInfo = this.data.shareInfo;
-            
+
             // 分享信息有误
             if (!shareInfo) {
                 console.error('shareInfo is null');
@@ -295,7 +295,7 @@ Component({
                     },
                     () => {
                         wx.hideLoading();
-                        this.showToast(this.data.drawImgFailText)
+                        this.showToast(this.data.drawImgFailText);
                         // this.closeFriendCircle();
                     });
             } else {
@@ -324,4 +324,4 @@ Component({
             });
         }
     }
-})
+});

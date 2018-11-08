@@ -1,0 +1,42 @@
+{
+  "extends": "eslint-config-alloy",
+  "globals": {
+    "wx": true,
+    "App": true,
+    "getApp": true,
+    "Page": true,
+    "Component": true,
+    "getCurrentPages": true,
+    "Behavior": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "modules": true,
+      "spread" : true,
+      "restParams" : true
+    }
+  },
+  "rules": {
+    "new-cap": [2, {"capIsNewExceptions": ["Page", "App", "Component", "Behavior"]}],
+    "max-len": "warn",
+    "guard-for-in": "off",
+    "comma-dangle": "off",
+    "valid-jsdoc": "warn",
+    "spaced-comment": "warn",
+    "eqeqeq": "warn",
+    "camelcase": "warn",
+    "no-invalid-this": "warn",
+    "no-undefined": "warn",
+    "no-fallthrough": "warn",
+    "no-new": "off",
+    "no-cond-assign": "off",
+    "complexity": "warn",
+    "max-depth": "warn",
+    "no-case-declarations": "warn",
+    "no-param-reassign": "warn",
+    "prefer-promise-reject-errors": "warn"
+  }
+}
