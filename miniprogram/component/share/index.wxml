@@ -1,4 +1,5 @@
 <!--component/share/share.wxml-->
+<canvas style="width: 375px; height: 667px; position: fixed; top: -1000px;" canvas-id="shareCanvas"></canvas>
 <!-- 分享按钮 -->
 <button 
     bindtap="onShare"
@@ -20,8 +21,7 @@
             <button
                 class="share share-icon1"
                 form-type="submit"
-                open-type="share"
-                bindtap="onShareAppMessage"></button>
+                open-type="share"></button>
             <view class="line"></view>
             <button
                 class="share share-icon2"

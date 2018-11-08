@@ -1,9 +1,8 @@
 <view class="container">
+    <view class="tips">图片挂在github，可能会很慢～</view>
     <view class="tit">宽图分享</view>
     <image mode="widthFix" src="{{img1}}" />
-    <!-- 绘图canvas，不能放到自定义组件，否则绘画不成功 -->
-    <canvas style="width: 375px; height: 667px; position: fixed; top: -1000px;" canvas-id="friendCanvasId">
-    </canvas>
+    
     <view class="item">
         <button
             open-type="getUserInfo"
@@ -16,9 +15,24 @@
         <!-- 自定义的分享组件 -->
         <Share 
             wx:else
-            share-info="{{shareInfo}}"/>
+            share-info="{{shareInfoA}}"
+            id="Jshare"/>
     </view>
+
     <view class="tit">长图分享</view>
     <image mode="widthFix" src="{{img2}}" />
+    <view class="item">
+        <button
+            open-type="getUserInfo"
+            bindgetuserinfo="onGotUserInfo"
+            wx:if="{{!userInfo}}"
+            >
+            请先点击授权
+        </button>
 
+        <!-- 自定义的分享组件 -->
+        <Share 
+            wx:else
+            share-info="{{shareInfoB}}"/>
+    </view>
 </view>

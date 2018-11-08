@@ -1,4 +1,12 @@
 /* miniprogram/pages/share/share.wxss */
+.tips{
+    color: #fff;
+    font-size: 24rpx;
+    line-height: 80rpx;
+    width: 100%;
+    text-align: center;
+    background-color: #f60;
+}
 .tit{
     line-height: 80rpx;
     text-align: left;

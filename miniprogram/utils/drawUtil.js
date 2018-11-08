@@ -55,7 +55,7 @@ function downloadFile(url = '', retry, success, fail) {
  * @param success
  * @param fail
  */
-function saveImage(canvasId, canvasW, canvasH, retry, success, fail) {
+function saveImage(canvasId, canvasW, canvasH, retry, success, fail, canvasContext) {
     wx.canvasToTempFilePath({
         x: 0,
         y: 0,
@@ -74,7 +74,7 @@ function saveImage(canvasId, canvasW, canvasH, retry, success, fail) {
                 fail && fail(err);
             }
         },
-    });
+    }, canvasContext);
 }
 
 /**

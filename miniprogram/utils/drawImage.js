@@ -1,13 +1,11 @@
 /**
- * 朋友圈-画分享图
+ * 画图
  */
 const drawUtil = require('./drawUtil');
-const BLACK = '#000000';
 
 /**
- * 画分享图
+ * 画图传参格式
  * data: {
-    canvasId: canvasId, // 画布id
     width: 375, // 画布宽度
     height: 667, // 画布高度
     content: [ //画布内容，支持图片和文案类型，数组有多少就画多少
@@ -30,12 +28,13 @@ const BLACK = '#000000';
    }
  */
 module.exports = function (data, successCallback, failCallback) {
-    if(!data || !data.canvasId){
+    if(!data){
         failCallback && failCallback();
     }
 
-    let canvasId = data.canvasId; // 画板id
-    const context = wx.createCanvasContext(canvasId);
+    const canvasId = 'shareCanvas'; // 画板id
+    const canvasContext = data.canvasContext;
+    const context = wx.createCanvasContext(canvasId, canvasContext);
     let canvasW = data.width;
     let canvasH = data.height;
     let saveW = canvasW * 2;
@@ -124,7 +123,8 @@ module.exports = function (data, successCallback, failCallback) {
             },
             err => {
                 failCallback && failCallback(err);
-            }
+            },
+            canvasContext
         );
     };
 

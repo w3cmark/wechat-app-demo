@@ -17,7 +17,7 @@
     background-color: #fff;
     z-index: 3;
     width: 100%;
-    height: 300rpx;
+    height: 350rpx;
     left: 0;
     bottom: 0;
     transform: translateY(100%);
@@ -71,6 +71,7 @@
     background-color: transparent;
     width: 200rpx;
     height: 198rpx;
+    margin-top: 25rpx;
     background-size: 100% auto;
     background-repeat: no-repeat;
 }
@@ -105,10 +106,11 @@
     transform: translateY(100%);
 }
 .share-circle-poup image {
-    height: 750rpx;
-    width: 500rpx;
-    margin: 0 auto;
+    height: 700rpx;
+    width: 400rpx;
+    margin: 30rpx auto 40rpx;
     display: block;
+    box-shadow: 0 0 20rpx #ccc;
 }
 
 .share-circle-poup .btn {

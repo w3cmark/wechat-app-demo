@@ -1,5 +1,4 @@
-// component/share/share.js
-const drawShareCircleImage = require('../../utils/drawShareCircleImage');
+const drawImage = require('../../utils/drawImage');
 
 Component({
     /**
@@ -18,7 +17,8 @@ Component({
     data: {
         showSharePickPop: false, // 是否显示选择弹层
         showCirclePoup: false, // 是否显示分享到朋友圈的图片弹层
-        circleImage: '', // 绘制的分享图
+        circleImage: '', // 绘制的朋友圈分享图
+        friendImage: '', // 绘制的朋友圈分享图
         animationData: {
             mainPoup: {}, // 分享面板动画
             maskPoup: {}, // 半透明遮罩层动画
@@ -44,17 +44,17 @@ Component({
         createAnimation() {
             // 分享面板动画
             this.mainPoupAnimation = wx.createAnimation({
-                duration: 300,
+                duration: 400,
                 timingFunction: 'ease-out',
             })
             // 半透明遮罩层动画
             this.maskPoupAnimation = wx.createAnimation({
-                duration: 300,
+                duration: 400,
                 timingFunction: 'ease-out',
             })
             // 分享朋友圈动画
             this.circlePoupAnimation = wx.createAnimation({
-                duration: 300,
+                duration: 400,
                 timingFunction: 'ease-out',
             })
         },
@@ -64,7 +64,7 @@ Component({
          * @param icon 提示icon
          * @param duration 持续时间
          */
-        showToast(title, icon='none', duration='2000') {
+        showToast(title, icon='none', duration=2000) {
             wx.showToast({
                 title,
                 icon,
@@ -107,7 +107,52 @@ Component({
                 this.setData({
                     showSharePickPop: false,
                 })
-            }, 300)
+            }, 400)
+        },
+        /**
+         * 监听 点击分享到好友按钮
+         */
+        onShareAppMessage(shareInfo, callback) {
+            // 开始生成图片
+            if (!this.data.friendImage) {
+                this.drawFriendImg(shareInfo, (imgUrl)=> {
+                    callback && callback(imgUrl);
+                });
+            }
+        },
+        /**
+         * 绘制好友分享图
+         */
+        drawFriendImg(shareInfo, callback) {
+            
+            // 分享信息有误
+            if (!shareInfo) {
+                console.error('shareInfo is null');
+                return;
+            }
+
+            // 判断是否有canvas生成的图片缓存
+            if (!this.data.tempDrawFriendImgUrl) {
+                // wx.showLoading({ title: '图片生成中...', });
+                // 设置二维码url
+                // shareInfo.qrCodeUrl = sharePanelUtils.getQrCodeUrlProductDetail(shareInfo.productId, shareInfo.brandId);
+                // shareInfo.qrCodeUrl = '';
+                shareInfo.canvasContext = this;
+                // canvas上绘制图片
+                drawImage(shareInfo,
+                    tempDrawFriendImgUrl => {
+                        this.data.tempDrawFriendImgUrl = tempDrawFriendImgUrl; // 记录当前canvas保存的临时文件
+                        callback && callback(tempDrawFriendImgUrl);
+                        // wx.hideLoading();
+                    },
+                    () => {
+                        // wx.hideLoading();
+                        // this.showToast(this.data.drawImgFailText)
+                        // this.closeFriendCircle();
+                    });
+            } else {
+                callback && callback(this.data.tempDrawFriendImgUrl);
+            }
         },
         /**
          * 监听 点击分享到朋友圈按钮
@@ -126,7 +171,7 @@ Component({
 
             // 开始生成图片
             if (!this.data.circleImage) {
-                this.drawImg();
+                this.drawCircleImg();
             }
         },
         /**
@@ -142,7 +187,7 @@ Component({
                 this.setData({
                     showCirclePoup: false,
                 })
-            }, 300)
+            }, 400)
         },
         /**
          * 监听 点击保存到相册按钮
@@ -204,6 +249,9 @@ Component({
             }
             
         },
+        /**
+         * 保存到相册按钮
+         */
         saveImage() {
             wx.setStorage({
                 key: 'authorizeWritePhotosAlbum',
@@ -220,9 +268,9 @@ Component({
             });
         },
         /**
-         * 绘制分享图
+         * 绘制朋友圈分享图
          */
-        drawImg() {
+        drawCircleImg() {
             let shareInfo = this.data.shareInfo;
             
             // 分享信息有误
@@ -234,14 +282,12 @@ Component({
             // 判断是否有canvas生成的图片缓存
             if (!this.data.tempDrawImgUrl) {
                 wx.showLoading({ title: '图片生成中...', });
-                // shareInfo.nickName = this.data.userInfo.nickName; // 昵称
-                // shareInfo.avatarUrl = this.data.userInfo.avatarUrl; // 头像
                 // 设置二维码url
                 // shareInfo.qrCodeUrl = sharePanelUtils.getQrCodeUrlProductDetail(shareInfo.productId, shareInfo.brandId);
                 // shareInfo.qrCodeUrl = '';
-
+                shareInfo.canvasContext = this;
                 // canvas上绘制图片
-                drawShareCircleImage(shareInfo,
+                drawImage(shareInfo,
                     tempDrawImgUrl => {
                         this.data.tempDrawImgUrl = tempDrawImgUrl; // 记录当前canvas保存的临时文件
                         this.setShareImgPath(tempDrawImgUrl);
@@ -250,7 +296,7 @@ Component({
                     () => {
                         wx.hideLoading();
                         this.showToast(this.data.drawImgFailText)
-                        this.closeFriendCircle();
+                        // this.closeFriendCircle();
                     });
             } else {
                 this.setShareImgPath(this.data.tempDrawImgUrl);
